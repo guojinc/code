@@ -1,0 +1,9 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    // 测试依赖
+    testImplementation 'junit:junit:4.13.2'
+}
+
