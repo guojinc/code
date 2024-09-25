@@ -10,13 +10,16 @@ public class t{
 		a.x = x;
 		a.y = y;
 	}
-	public static void main(String args[])
+	public static void main(String[] args)
 	{
 		object k = new object(3, 4);
 			
 		change(k, 0, 0);
+		String s = new String("就");
+		s = "123";
+		System.out.println(s);
+		
 		System.out.println(k.x + " " + k.y);
-
 		// for (int i = 0; i < 10; i++)
 		// {
 			// System.out.println(i);
