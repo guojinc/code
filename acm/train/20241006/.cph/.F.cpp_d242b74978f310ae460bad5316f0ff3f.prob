@@ -1,0 +1,1 @@
+{"name":"Local: F","url":"c:\\code\\acm\\train\\20241006\\F.cpp","tests":[{"id":1728188545755,"input":"6\n4 2 1 6 6 5\n1 2\n2 3\n1 4\n4 5\n4 6","output":"18"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\code\\acm\\train\\20241006\\F.cpp","group":"local","local":true}

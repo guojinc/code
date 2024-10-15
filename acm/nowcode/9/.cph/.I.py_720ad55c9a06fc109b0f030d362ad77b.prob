@@ -1,0 +1,1 @@
+{"name":"Local: I","url":"c:\\code\\acm\\nowcode\\9\\I.py","tests":[{"id":1723532846398,"input":"2\n10 99","output":"12"},{"id":1723532858196,"input":"6\n100000 999999","output":"704"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\code\\acm\\nowcode\\9\\I.py","group":"local","local":true}

@@ -108,7 +108,7 @@ def main():
     # iterate(formula_newton)
     # Steffensen(formula)
     # Aitken(formula)
-    # iterate(newton3, x0=0.1)
+    iterate(newton3, x0=0.1)
     # dichotomy(formula2)
     # print(compute_y(0.47485))
 
