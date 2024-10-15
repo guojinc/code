@@ -5,6 +5,8 @@
 	> Created Time: Sun Sep  1 17:52:49 2024
  ************************************************************************/
 public class t{
+	static int ta = 10;
+	
 	public static void change(object a,int x,int y)
 	{
 		a.x = x;
@@ -12,6 +14,8 @@ public class t{
 	}
 	public static void main(String[] args)
 	{
+		ta = 12;
+		System.out.println(ta);
 		object k = new object(3, 4);
 			
 		change(k, 0, 0);
