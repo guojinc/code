@@ -10,3 +10,9 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.12.0'
     testImplementation 'junit:junit:4.13.2'
 }
+=======
+dependencies {
+    // 测试依赖
+    testImplementation 'junit:junit:4.13.2'
+}
+
