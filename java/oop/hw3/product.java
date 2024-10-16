@@ -1,5 +1,3 @@
-package java.oop.hw3;
-
 import java.sql.Date;
 
 /**
