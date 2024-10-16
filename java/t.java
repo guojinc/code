@@ -1,32 +1,34 @@
 /*************************************************************************
-	> File Name: t.java
-	> Author: dascard
-	> Mail: dascard601@gmail.com 
-	> Created Time: Sun Sep  1 17:52:49 2024
+  > File Name: code/java/t.java
+  > Author: dascard
+  > Mail: dascard601@gmail.com 
+  > Created Time: Sat Aug 31 21:51:45 2024
  ************************************************************************/
 public class t{
-	static int ta = 10;
+	public static void main(String args[]){
+		int[] a = new int[3];
+		a[0] = 10;
+		a[1] = 290;
+
+		int b = (int)10L;
+		System.out.println(b);	
 	
-	public static void change(object a,int x,int y)
-	{
-		a.x = x;
-		a.y = y;
 	}
-	public static void main(String[] args)
+
+	public static void a(){
+		for (int i = 0; i < 10; i++)	
+		{
+			System.out.println(i);
+		}
+	}
+	static int a = 10;
+	public static void b()
 	{
-		ta = 12;
-		System.out.println(ta);
-		object k = new object(3, 4);
-			
-		change(k, 0, 0);
-		String s = new String("就");
-		s = "123";
-		System.out.println(s);
+		if (a == 10)
+		{
+			System.out.println("stf");
+		}
 		
-		System.out.println(k.x + " " + k.y);
-		// for (int i = 0; i < 10; i++)
-		// {
-			// System.out.println(i);
-		// }
 	}
 }
+

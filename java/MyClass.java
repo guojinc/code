@@ -1,8 +1,4 @@
 /*************************************************************************
-	> File Name: Myclass.java
-	> Author: dascard
-	> Mail: dascard601@gmail.com 
-	> Created Time: Wed Sep 11 13:11:58 2024
 	> File Name: MyClass.java
 	> Author: dascard
 	> Mail: dascard601@gmail.com 
