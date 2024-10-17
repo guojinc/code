@@ -61,9 +61,9 @@ public class product {
     }
 
     /**
-     * @param object the other object
+     * @param Object the other object
      */
-    public boolean equals(object Object)
+    public boolean equals(Object Object)
     {
         if (this == Object) {
             return true;
