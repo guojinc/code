@@ -26,6 +26,15 @@ void main(){
 }
 )";
 
+const char* fragment_shader1 = R"(
+#version 330 core
+out vec4 FragColor;
+
+void main(){
+	FragColor = vec4(1.0f, 1.0f, 0.0f, 1.0f);
+}
+)";
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height){
 	glViewport(0, 0, width, height);
@@ -97,12 +106,28 @@ int main()
 		std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
 	}
 
-	unsigned int shaderProgram;
+	GLuint fragmentShader1 = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragmentShader1, 1, &fragment_shader1, NULL);
+	glCompileShader(fragmentShader1);
+
+	glGetShaderiv(fragmentShader1, GL_COMPILE_STATUS, &success);
+	if (!success)
+	{
+		glGetShaderInfoLog(fragmentShader1, 512, NULL, infoLog);
+		std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+	}
+
+
+	unsigned int shaderProgram, shaderProgram1;
 	shaderProgram = glCreateProgram();
+	shaderProgram1 = glCreateProgram();
 
 	glAttachShader(shaderProgram, vertexShader);
 	glAttachShader(shaderProgram, fragmentShader);
 	glLinkProgram(shaderProgram);
+	glAttachShader(shaderProgram1, vertexShader);
+	glAttachShader(shaderProgram1, fragmentShader1);
+	glLinkProgram(shaderProgram1);
 
 	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
 
@@ -111,6 +136,8 @@ int main()
 		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
 		std::cout << "ERROR::SHADER::PROGRAM::LINK_FAILED\n" << infoLog << std::endl;
 	}
+
+
 	float vertices[] = {
 		-sqrt(3) / 2, -0.5f, 0.0f, // left
 		 sqrt(3) / 2, -0.5f, 0.0f, // right
@@ -127,6 +154,7 @@ int main()
 
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
+	glDeleteShader(fragmentShader1);
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
@@ -138,8 +166,10 @@ int main()
 	glViewport(0, 0, WindowWidth, WindowHeight);
 
 	float theta = 3.1415926 / 2;
-	float scale = 1.0;
+	float theta_1 = 3.1415926 / 6;
+	float scale = 0.6;
 	int weight = 1;
+	int color = 1;
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -149,10 +179,11 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 		
 		theta -= 0.01f;
+		theta_1 -= 0.01f;
 		scale += 0.003f * weight;
-		if (scale >= 1.0f)
+		if (scale >= 0.6f)
 			weight = -1;
-		if (scale <= 0.3f)
+		if (scale <= 0.4f)
 			weight = 1;
 		vertices[0] = cos(theta) * scale;
 		vertices[1] = sin(theta) * scale;
@@ -161,14 +192,54 @@ int main()
 		vertices[6] = cos(theta + 3.1415926 * 4 / 3) * scale;
 		vertices[7] = sin(theta + 3.1415926 * 4 / 3) * scale;
 
+		float vertices_1[] = {
+			cos(theta_1) * (1 - scale), sin(theta_1) * (1 - scale), 0.0f, // right
+			cos(theta_1 + 3.1415926 * 2 / 3) * (1 - scale), sin(theta_1 + 3.1415926 * 2 / 3) * (1 - scale), 0.0f, // left
+			cos(theta_1 + 3.1415926 * 4 / 3) * (1 - scale), sin(theta_1 + 3.1415926 * 4 / 3) * (1 - scale), 0.0f,  // top
+		};
+		GLuint VAO_1, VBO_1;
+		glGenVertexArrays(1, &VAO_1);
+		glGenBuffers(1, &VBO_1);
+		glBindVertexArray(VAO_1);
+
+		glUseProgram(shaderProgram1);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO_1);
+		if (color == 1)
+		{
+			glBufferData(GL_ARRAY_BUFFER, sizeof(vertices_1), vertices_1, GL_STATIC_DRAW);
+			glUseProgram(shaderProgram1);
+		}
+		else
+		{
+			glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+			glUseProgram(shaderProgram);
+		}
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(0);
+
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		
+
 
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-		glUseProgram(shaderProgram);
+		if (color == 1)
+		{
+			glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+			glUseProgram(shaderProgram);
+		}
+		else
+		{
+			glBufferData(GL_ARRAY_BUFFER, sizeof(vertices_1), vertices_1, GL_STATIC_DRAW);
+			glUseProgram(shaderProgram1);
+		}
 		glBindVertexArray(VAO);
 		// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
+		if (weight == 1)
+			color = 1;
+		else
+			color = 0;
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
