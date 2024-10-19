@@ -185,17 +185,20 @@ int main()
 			weight = -1;
 		if (scale <= 0.4f)
 			weight = 1;
-		vertices[0] = cos(theta) * scale;
-		vertices[1] = sin(theta) * scale;
-		vertices[3] = cos(theta + 3.1415926 * 2 / 3) * scale;
-		vertices[4] = sin(theta + 3.1415926 * 2 / 3) * scale;
-		vertices[6] = cos(theta + 3.1415926 * 4 / 3) * scale;
-		vertices[7] = sin(theta + 3.1415926 * 4 / 3) * scale;
+
+		float wid = 1.0f;
+		float hei = 0.5f;
+		vertices[0] = cos(theta) * scale * wid;
+		vertices[1] = sin(theta) * scale * hei;
+		vertices[3] = cos(theta + 3.1415926 * 2 / 3) * scale * wid;
+		vertices[4] = sin(theta + 3.1415926 * 2 / 3) * scale * hei;
+		vertices[6] = cos(theta + 3.1415926 * 4 / 3) * scale * wid;
+		vertices[7] = sin(theta + 3.1415926 * 4 / 3) * scale * hei;
 
 		float vertices_1[] = {
-			cos(theta_1) * (1 - scale), sin(theta_1) * (1 - scale), 0.0f, // right
-			cos(theta_1 + 3.1415926 * 2 / 3) * (1 - scale), sin(theta_1 + 3.1415926 * 2 / 3) * (1 - scale), 0.0f, // left
-			cos(theta_1 + 3.1415926 * 4 / 3) * (1 - scale), sin(theta_1 + 3.1415926 * 4 / 3) * (1 - scale), 0.0f,  // top
+			cos(theta_1) * (1 - scale) * wid, sin(theta_1) * (1 - scale) * hei, 0.0f, // right
+			cos(theta_1 + 3.1415926 * 2 / 3) * (1 - scale) * wid, sin(theta_1 + 3.1415926 * 2 / 3) * (1 - scale) * hei, 0.0f, // left
+			cos(theta_1 + 3.1415926 * 4 / 3) * (1 - scale) * wid, sin(theta_1 + 3.1415926 * 4 / 3) * (1 - scale) * hei, 0.0f,  // top
 		};
 		GLuint VAO_1, VBO_1;
 		glGenVertexArrays(1, &VAO_1);
