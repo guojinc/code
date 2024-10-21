@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/workspaces/code/build",
+  "command": "/usr/bin/cc  -I/workspaces/code/opengl/include  -g   -finput-charset=UTF-8 -fexec-charset=UTF-8 -o CMakeFiles/opengl.dir/src/glad.c.o   -c /workspaces/code/opengl/src/glad.c",
+  "file": "/workspaces/code/opengl/src/glad.c"
+},
+{
+  "directory": "/workspaces/code/build",
+  "command": "/usr/bin/c++   -I/workspaces/code/opengl/include  -g   -finput-charset=UTF-8 -fexec-charset=UTF-8 -std=gnu++17 -o CMakeFiles/opengl.dir/src/main.cpp.o -c /workspaces/code/opengl/src/main.cpp",
+  "file": "/workspaces/code/opengl/src/main.cpp"
+}
+]

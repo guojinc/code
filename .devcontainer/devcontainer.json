@@ -1,8 +1,16 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-  }
-  "hostRequirements":{
-    "cpus" : 1
-  }
-}
+      "name": "C++ Development",
+        "dockerFile": "Dockerfile",
+          "settings": {
+              "terminal.integrated.shell.linux": "/bin/bash"
+                },
+                  "extensions": [
+                      "ms-vscode.cpptools",
+                          "ms-vscode.cmake-tools"
+                            ],
+                              "postCreateCommand": "sudo apt-get update && sudo apt-get install -y cmake",
+                           "image": "mcr.microsoft.com/devcontainers/base:ubuntu", 
+                             "features": {
+                                 "ghcr.io/devcontainers/features/git:1": {}
+                                   }   
+                            }

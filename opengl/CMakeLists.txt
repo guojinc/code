@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28.0)                  #版本号
+cmake_minimum_required(VERSION 3.16.0)                  #版本号
 project(opengl)                                         #项目名
 
 set(CMAKE_CXX_STANDARD 17)                              #设置C++标准
